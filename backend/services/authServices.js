@@ -10,8 +10,13 @@ module.exports.hashedPassword = async (password) => {
     return hashed;
 }
 
+module.exports.comparePassword = async (password, dbPassword) => {
+    return await bcrypt.compare(password, dbPassword)
+}
+
 module.exports.createToken = (user) => {
     return jwt.sign(user, JWT_SECRET, {
         expiresIn : '7d'
     })
 }
+
